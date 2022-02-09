@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import {Route, BrowserRouter as Router, Routes} from 'react-router-dom';
+import { BrowserRouter as Router} from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { generateVideoData } from "./redux/actions/video";
@@ -28,7 +28,7 @@ function App(props) {
   }
   let user = JSON.parse(localStorage.getItem('user'))
   
-  if(user ==  null){
+  if(user === null){
     localStorage.setItem('user', JSON.stringify(userData))
   }
 
@@ -95,7 +95,7 @@ async function fetchCaption(){
   if (captions.length !== 0){
 
   datas = captions.filter(caption => {
-      if(caption.text != undefined){
+      if(caption.text !== undefined){
        return caption.text.includes(word)
       }  
     })
@@ -119,8 +119,20 @@ else{
 
 
 const getVideo = async () => {
+  let url_string;
+  function extractUrl(url){
     if(url.includes('youtube.com')){
-      let url_string = url.split('=')
+     url_string = url.split('=')
+     return true
+    }
+    if(url.includes('youtu.be')){
+      url_string = url.split('/')
+      return true
+    }
+    
+  } 
+  let boolean = extractUrl(url)
+  if(boolean){
       if (url_string[1].length === 11){
         setid(url_string[1])
     let user = JSON.parse(localStorage.getItem('user'))
