@@ -126,7 +126,7 @@ const getVideo = async () => {
      return true
     }
     if(url.includes('youtu.be')){
-      url_string = url.split('/')
+      url_string = url.split('be/')
       return true
     }
     
