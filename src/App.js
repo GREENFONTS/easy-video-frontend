@@ -1,11 +1,7 @@
 import './App.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router} from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { generateVideoData } from "./redux/actions/video";
-import { getCaptions} from './redux/actions/captions';
+import {BrowserRouter as Router} from 'react-router-dom';
 import YouTubeIframeLoader from 'youtube-iframe';
 import Header from './components/header';
 import Footer from './components/Footer';
@@ -13,7 +9,7 @@ import Layout from './components/layout';
 import { backendUrl } from './config/config';
 import AlertHandler from './components/alert';
 
-function App(props) {
+function App() {
   const [url, setUrl] = useState('');
   const [id, setid] = useState(null);
   const [word, setWord] = useState('');
@@ -28,14 +24,14 @@ function App(props) {
   }
   let user = JSON.parse(localStorage.getItem('user'))
   
-  if(user === null){
+  if(user ==  null){
     localStorage.setItem('user', JSON.stringify(userData))
   }
 
   useEffect(()=>{
     YouTubeIframeLoader.load((YT) => {
      let player = new YT.Player('player', {
-        height: '500',
+        height: 'inherit',
         width: '100%',
         autoplay: 1,
         start: 0,
@@ -126,15 +122,16 @@ const getVideo = async () => {
      return true
     }
     if(url.includes('youtu.be')){
-      url_string = url.split('be/')
+      url_string = url.split('.be/')
       return true
     }
     
   } 
-  let boolean = extractUrl(url)
-  if(boolean){
-      if (url_string[1].length === 11){
+  if(extractUrl(url)){
+    console.log(url_string)
+    if (url_string[1].length === 11){
         setid(url_string[1])
+        
     let user = JSON.parse(localStorage.getItem('user'))
     let video = user.history.filter((ele) => {
       return ele.videoId === url_string[1]
@@ -180,11 +177,8 @@ const getVideo = async () => {
       <Router>
         <Header />
         <AlertHandler message={Message} setMessage={setMessage}/>
-        <Layout  setUrl={setUrl} id={id} getVideo={getVideo} setWord={setWord} fetchCaption={fetchCaption} wordSearch={wordSearch}
+        <Layout  setUrl={setUrl} getVideo={getVideo} setWord={setWord} fetchCaption={fetchCaption} wordSearch={wordSearch}
         data={data} id={id} setSeekClick={setSeekClick} getIndex={getIndex} seekClick={seekClick} setwordSearch={setwordSearch}/>
-        {/* <Routes>
-
-        </Routes> */}
         <Footer />
       </Router>
       
@@ -193,16 +187,4 @@ const getVideo = async () => {
   );
 }
 
-App.prototype = {
-  captions : PropTypes.array.isRequired,
-  generateVideoData : PropTypes.func.isRequired,
-  getCaptions : PropTypes.func.isRequired
-}
-
-const mapStateToProps =  state => ({
-  token: state.token,
-  video: state.video,
-  caption : state.caption
-})
-
-export default connect(mapStateToProps, {generateVideoData, getCaptions})(App);
+export default App;

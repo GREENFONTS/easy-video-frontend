@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, AlertIcon, CloseButton, AlertDescription, AlertTitle, Box, Flex } from '@chakra-ui/react'
+import {Alert, AlertIcon, CloseButton} from '@chakra-ui/react'
 
 const AlertHandler = (props) => {
     let displayProp = false
