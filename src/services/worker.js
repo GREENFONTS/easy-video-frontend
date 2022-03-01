@@ -21,7 +21,7 @@ const worker = async (url_string, setMessage, setvideoState) => {
                let jobData = await response.json();
                console.log(jobData)
                count++
-              if(count > 30){
+              if(count > 20){
                 setMessage('Closed Captions unavailable..Request Timeout...Please try again')
                 setvideoState(false)
                 clearInterval(intervalId)
@@ -33,7 +33,7 @@ const worker = async (url_string, setMessage, setvideoState) => {
                 clearInterval(intervalId)
               }
             localStorage.setItem('user', JSON.stringify(user))
-           }, 4500);           
+           }, 5000);           
            }
            localStorage.setItem('user', JSON.stringify(user))  
       }
@@ -66,7 +66,7 @@ const worker = async (url_string, setMessage, setvideoState) => {
                clearInterval(intervalId)
              }
            localStorage.setItem('user', JSON.stringify(user))
-          }, 4500);     
+          }, 5000);     
    }
          
        }
