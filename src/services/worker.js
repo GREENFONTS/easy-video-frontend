@@ -23,7 +23,7 @@ const worker = async (url_string, setMessage, setvideoState) => {
                count++
               if(count > 20){
                 setMessage('Closed Captions unavailable..Request Timeout...Please try again')
-                setvideoState(false)
+                setvideoState(true)
                 clearInterval(intervalId)
               }
               if(jobData.state === 'completed'){
@@ -56,7 +56,7 @@ const worker = async (url_string, setMessage, setvideoState) => {
               count++
              if(count > 20){
                setMessage('Closed Captions unavailable..Request Timeout...Please try again')
-               setvideoState(false)
+               setvideoState(true)
                clearInterval(intervalId)
              }
              if(jobData.state === 'completed'){
