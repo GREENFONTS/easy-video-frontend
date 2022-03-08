@@ -72,7 +72,13 @@ function App() {
       }
       onPlayerReady(playerInst)
 
-  }, [videoclick])
+  }, [videoclick, id])
+
+  useEffect(() => {
+    setData([])
+    setwordSearch(false)
+    setWord('')
+  },[id])
 
   useEffect(() => {
     function onPlayerReady(playerInst){
