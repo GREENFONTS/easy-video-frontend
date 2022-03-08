@@ -61,7 +61,7 @@ const Layout = (props) => {
          <Box align='center' width={['100%', '100%', '50%']}  h={{ base: '50%', md: '85vh', lg: '85vh' }} >
             {displayProp ? 
             <Box>
-            <Bounce bottom> 
+            <Bounce bottom > 
                 <Box height={{ base: '100px', md: '200px', lg: '300px' }}  borderLeft='1px' borderBottom='1px' borderColor='gray.200' boxShadow='base' width={{base:'60%', lg: '90%'}}>
                     <Image src='/images/video.png' alt='Topic' height='inherit'  width='inherit' />
                 </Box >                   
