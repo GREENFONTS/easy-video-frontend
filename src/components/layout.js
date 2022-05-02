@@ -35,8 +35,8 @@ const Layout = (props) => {
             <Box align='center' width={['100%', '100%', '50%']}  h={{ base: '50%', md: '85vh', lg: '85vh' }} mt='0' marginBottom={{base : '30px'}}>
                 <Box>
                     <Flex align='center' justify='center'>
-                        <Input placeholder='Youtube video url' borderRadius='none' width="70%" h={{base: '25px', md: '35px', lg: '40px'}} fontSize={{base: '13px', md: '18px', lg: '23px'}} onChange={(e) => props.setUrl(e.target.value)} required/>
-                        <Button onClick={(e) => {
+                        <Input placeholder='Youtube video url' type='text' borderRadius='none' width="70%" h={{base: '25px', md: '35px', lg: '40px'}} fontSize={{base: '13px', md: '18px', lg: '23px'}} onChange={(e) => props.setUrl(e.target.value)} required/>
+                        <Button name='searchButton' onClick={(e) => {
                             props.getVideo()
                             props.setVideoClick(true)}} borderRadius='none' bg={searchColor} width='70px' align='center' py={1} h={{ base: '25px', md: '35px', lg: '40px' }} _hover={{ bg: 'gray.400' }}>
                             <Icon as={RiSearch2Line} w={{ base: '29px', md: '32px', lg: '35px' }} h={{ base: '20px', md: '24px', lg: '27px' }} />
@@ -86,7 +86,7 @@ const Layout = (props) => {
                                     size='xl' 
                                     label="Please wait...Searching for Captions"/>
                                     <Box align='center'><Text>Please wait...</Text>
-                                    <Text>Searching for Captions...</Text></Box>
+                                    <h2>Searching for Captions...</h2></Box>
                                     </Box>
                                     :
                     <Flex  align='center' justify='center'>
